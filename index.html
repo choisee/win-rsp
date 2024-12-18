@@ -11,7 +11,7 @@
         font-family: Arial, sans-serif;
       }
       button {
-        padding: 30px;
+        padding: 15px;
         background-color: #333;
         color: white;
         border: none;
@@ -32,28 +32,49 @@
       }
       #result {
         font-family: serif;
-        font-size: 120px;
+        font-size: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+      }
+      img {
+        width: 250px;
+        height: 250px;
       }
     </style>
   </header>
   <body>
     <div id="info">
-      <div id="result">가즈아</div>
+      <div id="result">
+        <img src="images/win.jpg" alt="이기자" />
+        <span>가즈아</span>
+      </div>
       <button onclick="handleRSP()">가위바위보</button>
     </div>
     <script>
-      const colors = ["#00BFFF", "#FF6347", "#32CD32", "#1E90FF"];
+      const colors = ["#00BFFF", "#FF6347", "#32CD32", "#f9e93e"];
+      const options = {
+        가위: "images/scissors.jpg",
+        바위: "images/rock.jpg",
+        보: "images/paper.jpg",
+      };
       let count = 0;
 
       const handleRSP = function () {
-        const options = ["가위", "바위", "보"];
-        const randomChoice =
-          options[Math.floor(Math.random() * options.length)];
+        const hands = ["가위", "바위", "보"];
+        const randomChoice = hands[Math.floor(Math.random() * hands.length)];
 
         const color = colors[count % colors.length];
 
         const resultElement = document.getElementById("result");
-        resultElement.textContent = randomChoice;
+        // resultElement.textContent = randomChoice;
+        resultElement.innerHTML = `
+        <img src="${options[randomChoice]}" alt="${randomChoice}" />
+        <span>${randomChoice}</span>
+      `;
+
         resultElement.style.color = color;
         count++;
       };
