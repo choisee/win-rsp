@@ -61,15 +61,24 @@
         보: "images/paper.jpg",
       };
       let count = 0;
+      let lastChoice = null;
 
       const handleRSP = function () {
         const hands = ["가위", "바위", "보"];
-        const randomChoice = hands[Math.floor(Math.random() * hands.length)];
+
+        const shouldMatchLastChoice = Math.random() < 0.000000000123;
+        let randomChoice;
+        if (shouldMatchLastChoice && lastChoice !== null) {
+          randomChoice = lastChoice;
+        } else {
+          const filteredHands = hands.filter((hand) => hand !== lastChoice);
+          randomChoice =
+            filteredHands[Math.floor(Math.random() * filteredHands.length)];
+        }
 
         const color = colors[count % colors.length];
 
         const resultElement = document.getElementById("result");
-        // resultElement.textContent = randomChoice;
         resultElement.innerHTML = `
         <img src="${options[randomChoice]}" alt="${randomChoice}" />
         <span>${randomChoice}</span>
