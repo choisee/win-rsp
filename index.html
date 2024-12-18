@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <header>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이기자! 이긴다! - 가위바위보</title>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+        font-family: Arial, sans-serif;
+      }
+      button {
+        padding: 10px 20px;
+        background-color: #333;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-family: serif;
+        font-size: xx-large;
+      }
+      button:hover {
+        background-color: #555;
+      }
+      #info {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        min-height: 300px;
+      }
+      #result {
+        font-family: serif;
+        font-size: 120px;
+      }
+    </style>
+  </header>
+  <body>
+    <div id="info">
+      <button onclick="handleRSP()">가위바위보</button>
+      <div id="result">가즈아</div>
+    </div>
+    <script>
+      const colors = ["#00BFFF", "#FF6347", "#32CD32", "#1E90FF"];
+      let count = 0;
+
+      const handleRSP = function () {
+        const options = ["가위", "바위", "보"];
+        const randomChoice =
+          options[Math.floor(Math.random() * options.length)];
+
+        const color = colors[count % colors.length];
+
+        const resultElement = document.getElementById("result");
+        resultElement.textContent = randomChoice;
+        resultElement.style.color = color;
+        count++;
+      };
+    </script>
+  </body>
+</html>
